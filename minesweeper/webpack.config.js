@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
+    assetModuleFilename: 'assets/[name][ext]',
   },
   // devtool: false,
   module: {
@@ -20,6 +21,10 @@ module.exports = {
             collapseWhitespace: false,
           },
         },
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
+        type: 'asset/resource'
       },
       {
         test: /\.s[ac]ss$/i,
