@@ -1,5 +1,4 @@
 import './style.scss';
-// import menu from '../assets/icons/bomb-solid.svg';
 
 export function createHeader() {
   const header = document.createElement('header');

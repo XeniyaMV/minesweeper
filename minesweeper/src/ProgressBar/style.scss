@@ -1,0 +1,74 @@
+.progress-bar {
+  max-width: 395px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.progress-bar_button {
+  width: 45px;
+  height: $text-field-height;
+  color: #fff;
+  background-color: #ec2811;
+  border: solid 2px #000;
+  border-radius: 50%;
+}
+
+.time-container {
+  width: 172px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.time-conteiner_icon {
+  width: 35px;
+  height: $text-field-height;
+
+  .icon {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.time {
+  margin-left: 10px;
+}
+
+.time_hours,
+.time_minutes,
+.time_seconds {
+  width: 35px;
+  height: $text-field-height;
+  margin: 0px 3px;
+}
+
+.time_hours {
+  margin-left: 0px;
+}
+
+.time_seconds {
+  margin-right: 0px;
+}
+
+.counter-container {
+  width: 95px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.counter-container_icon {
+  width: 35px;
+  height: 35px;
+
+  .icon {
+    width: 100%;
+  }
+}
+
+.counter-container_counter {
+  width: 50px;
+  height: $text-field-height;
+  margin-left: 10px;
+}
