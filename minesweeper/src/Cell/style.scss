@@ -1,0 +1,29 @@
+.game-field_cell {
+  width: 40px;
+  height: 40px;
+  border: 3.5px solid #f9ad14;
+  border-radius: 7px;
+  background-color: $game-background-color;
+  transition: background-color 0.5s, border-color 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #F914EF;
+    border: 3.5px solid #660462;
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 740px){
+    width: 30px;
+    height: 30px;
+  }
+
+  @media screen and (max-width: 385px){
+    width: 25px;
+    height: 25px;
+  }
+}

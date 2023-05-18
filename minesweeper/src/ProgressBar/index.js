@@ -38,7 +38,7 @@ stopwatch.append(seconds);
 time.append(stopwatch);
 
 
-const button = createButton({ title: 'Start', className: 'progress-bar_button' });
+const button = createButton({ title: 'Play', className: 'progress-bar_button' });
 
 const counterContainer = document.createElement('div');
 counterContainer.classList.add('counter-container');
@@ -54,8 +54,8 @@ counter.classList.add('counter-container_counter');
 counterContainer.append(counter);
 
 progressBar.append(time);
-progressBar.append(button);
 progressBar.append(counterContainer);
+progressBar.append(button);
 
 
 export { progressBar };

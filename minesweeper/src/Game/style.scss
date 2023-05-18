@@ -1,0 +1,20 @@
+.game-field_game {
+  background-color: #ffffff;
+  display: grid;
+  border-radius: 2px;
+  gap: 5px;
+  padding: 5px;
+}
+
+.game-field_game__10 {
+  grid-template-columns: repeat(10, 1fr);
+  width: 455px;
+
+  @media screen and (max-width: 740px) {
+    width: 355px;
+  }
+
+  @media screen and (max-width: 385px) {
+    width: 305px;
+  }
+}

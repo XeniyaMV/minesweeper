@@ -3,4 +3,10 @@
   padding: 0px;
   box-sizing: border-box;
   font-size: $regular-font;
+  font-family: $font-family;
+  color: $font-color;
+}
+
+.page {
+  background-color: $main-background-color;
 }
