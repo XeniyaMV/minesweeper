@@ -3,6 +3,7 @@ import clock from '../assets/icons/stopwatch.png';
 import boot from '../assets/icons/boot.png';
 
 import { createButton } from '../Button';
+import { stopWatch } from '../StopWatch';
 
 const progressBar = document.createElement('section');
 progressBar.classList.add('progress-bar');
@@ -18,16 +19,16 @@ time.innerHTML = `
 const stopwatch = document.createElement('div');
 stopwatch.classList.add('time');
 
-const hours = document.createElement('input');
-hours.type = 'text';
+const hours = document.createElement('div');
+// hours.type = 'text';
 hours.classList.add('time_hours');
 
-const minutes = document.createElement('input');
-minutes.type = 'text';
+const minutes = document.createElement('div');
+// minutes.type = 'text';
 minutes.classList.add('time_minutes');
 
-const seconds = document.createElement('input');
-seconds.type = 'text';
+const seconds = document.createElement('div');
+// seconds.type = 'text';
 seconds.classList.add('time_seconds');
 
 stopwatch.append(hours);
@@ -39,6 +40,15 @@ time.append(stopwatch);
 
 
 const button = createButton({ title: 'Play', className: 'progress-bar_button' });
+button.addEventListener('click', () => {
+  if (button.textContent === 'Pause') {
+    stopWatch('pause', seconds, minutes, hours);
+    button.textContent = 'Play';
+  } else {
+    stopWatch('continue', seconds, minutes, hours);
+    button.textContent = 'Pause';
+  }
+})
 
 const counterContainer = document.createElement('div');
 counterContainer.classList.add('counter-container');
@@ -48,8 +58,7 @@ counterContainer.innerHTML = `
   </div>
 `;
 
-const counter = document.createElement('input');
-counter.type = 'text';
+const counter = document.createElement('div');
 counter.classList.add('counter-container_counter');
 counterContainer.append(counter);
 
