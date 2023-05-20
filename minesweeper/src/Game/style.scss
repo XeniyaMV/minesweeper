@@ -10,11 +10,16 @@
   grid-template-columns: repeat(10, 1fr);
   width: 455px;
 
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 805px) {
     width: 355px;
   }
 
-  @media screen and (max-width: 385px) {
+  @media screen and (max-width: 410px) {
     width: 305px;
   }
+
+  @media screen and (max-width: 350px) {
+    width: 275px;
+  }
+
 }

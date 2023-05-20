@@ -1,11 +1,20 @@
 .header {
   margin: 10px auto 0px auto;
   max-width: 900px;
+  height: 65px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: $main-padding;
   border-radius: 10px;
+  transition: height 0.5s;
+}
+
+.header__active {
+  height: 100px;
+  @media screen and (min-width: 551px){
+    height: 65px;
+  }
 }
 
 .header-title {
@@ -31,8 +40,21 @@
   align-items: center;
   width: 100%;
   @media screen and (max-width: 551px){
-    display: none;
+    position: fixed;
+    top: 88px;
+    right: -300px;
+    width: 300px;
+    height: 35px;
+    padding: 12px;
+    opacity: 0;
+    transition: right 0.5s, opacity 0.5s;
+
   }
+}
+
+.list-menu__active {
+  right: 18px;
+  opacity: 1;
 }
 
 .list-menu_item {
@@ -58,6 +80,9 @@
 
 .burger-menu__active {
   transform: rotate(90deg);
+  position: fixed;
+  top: 50px;
+  right: 37px;
 }
 
 .burger-menu_item {

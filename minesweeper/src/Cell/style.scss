@@ -20,14 +20,19 @@
     opacity: 1;
   }
 
-  @media screen and (max-width: 780px){
+  @media screen and (max-width: 805px){
     width: 30px;
     height: 30px;
   }
 
-  @media screen and (max-width: 385px){
+  @media screen and (max-width: 410px){
     width: 25px;
     height: 25px;
+  }
+
+  @media screen and (max-width: 350px){
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -68,7 +73,7 @@
     width: 100%;
   }
 
-  @media screen and (max-width: 385px){
+  @media screen and (max-width: 410px){
     width: 15px;
     height: 15px;
   }
@@ -82,7 +87,7 @@
     width: 100%;
   }
 
-  @media screen and (max-width: 385px){
+  @media screen and (max-width: 410px){
     width: 15px;
     height: 15px;
   }

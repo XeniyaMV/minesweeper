@@ -9,6 +9,12 @@
 
 .page {
   background-color: $main-background-color;
+  padding: 15px;
+  overflow: scroll;
+}
+
+.page__active {
+  overflow: hidden;
 }
 
 .dark-screen {
