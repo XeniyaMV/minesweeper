@@ -9,6 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
+  font-weight: 600;
 
   &:hover {
     background-color: #F914EF;
@@ -37,8 +39,8 @@
 }
 
 .game-field_cell__opened {
-  opacity: 0.5;
-  transition: background-color 0.3s, border-color 0.3s opacity 0.3s;
+  opacity: 0.7;
+  transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
   &:hover {
     background-color: $game-background-color;
     border: 3.5px solid #f9ad14;

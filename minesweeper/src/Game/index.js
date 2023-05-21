@@ -44,7 +44,6 @@ function showWin() {
   }
   youWin.insertAdjacentHTML('afterbegin', `
   <h3 class = "game-field_you-win-title"> Hooray!</h3>
-  <p class = "game-field_you-win-content"> Would you like to start over? </p>
   `);
   p.innerHTML = `
     You found all mines in${showTime(h.textContent, 'hours')}${showTime(m.textContent, 'minutes')} 
@@ -87,8 +86,10 @@ class Game {
         if (!this.clicked) {
           this.initGame(numberCell[0], numberCell[1]);
           this.clicked = true;
-          stopWatch('start', s, m, h);
-          button.textContent = 'Pause';
+          if (button.textContent === 'Play') {
+            stopWatch('start', s, m, h);
+            button.textContent = 'Pause';
+          }
           this.countSteps += 1;
           counter.innerHTML = this.countSteps;
           this.dfs(numberCell[0], numberCell[1]);
@@ -174,6 +175,11 @@ class Game {
         this.cells[i][j].htmlElement.classList.add('game-field_cell__opened');
         this.cells[i][j].htmlElement.innerHTML = this.cells[i][j].minesNearby;
         this.cells[i][j].state = 1;
+        if (this.cells[i][j].minesNearby === 2) {
+          this.cells[i][j].htmlElement.style.color = '#191986';
+        } else if (this.cells[i][j].minesNearby >= 3) {
+          this.cells[i][j].htmlElement.style.color = '#FC3939';
+        }
         break;
       }
       const cellIndex = queue.pop();

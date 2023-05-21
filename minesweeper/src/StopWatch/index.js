@@ -35,6 +35,11 @@ function stopWatch(state, sec, min, hour) {
     clearInterval(start);
   }
   if (state === 'continue') {
+    if (h.innerHTML === '') {
+      h.innerHTML = '00';
+      m.innerHTML = '00';
+      s.innerHTML = '00';
+    }
     start = setInterval(startInterval, 1000);
   }
   if (state === 'stop') {
