@@ -13,16 +13,12 @@
   overflow: scroll;
 }
 
-.page__active {
-  overflow: hidden;
-}
-
 .dark-screen {
   background-color: #82e0aa;
   opacity: 0.35;
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   display: none;

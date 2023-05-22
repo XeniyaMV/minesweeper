@@ -20,15 +20,12 @@ const stopwatch = document.createElement('div');
 stopwatch.classList.add('time');
 
 const hours = document.createElement('div');
-// hours.type = 'text';
 hours.classList.add('time_hours');
 
 const minutes = document.createElement('div');
-// minutes.type = 'text';
 minutes.classList.add('time_minutes');
 
 const seconds = document.createElement('div');
-// seconds.type = 'text';
 seconds.classList.add('time_seconds');
 
 stopwatch.append(hours);

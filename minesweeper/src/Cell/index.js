@@ -1,5 +1,4 @@
 import './style.scss';
-import bomb from '../assets/icons/bomb-solid.svg';
 import flag from '../assets/icons/flag.svg';
 import { stopWatch } from '../StopWatch';
 

@@ -73,15 +73,21 @@ class Game {
     this.createGame();
 
     this.htmlElement.addEventListener('click', (event) => {
-      let numberCell = event.target.className.search(/[0-9]-[0-9]/);
+      let numberCell = event.target.className.search(/[0-9]-[0-9]|[0-9][0-9]-[0-9]/);
       const h = document.querySelector('.time_hours');
       const m = document.querySelector('.time_minutes');
       const s = document.querySelector('.time_seconds');
       const button = document.querySelector('.progress-bar_button');
       const counter = document.querySelector('.counter-container_counter');
-
-      numberCell = event.target.className.slice(numberCell, numberCell + 3);
-      numberCell = numberCell.split('-').map((item) => +item);
+      let numberCellString = '';
+      for (let i = numberCell; i < event.target.className.length; i++) {
+        if (event.target.className[i] === '-' || +event.target.className[i] || event.target.className[i] === '0') {
+          numberCellString += event.target.className[i];
+        } else {
+          break;
+        }
+      }
+      numberCell = numberCellString.split('-').map((item) => +item);
       if (event.target.classList.contains('game-field_cell')) {
         if (!this.clicked) {
           this.initGame(numberCell[0], numberCell[1]);
@@ -120,6 +126,10 @@ class Game {
       }
     })
 
+  }
+
+  changeMinesNumber(number) {
+    this.minesNumber = number;
   }
 
   showMines() {
@@ -229,7 +239,7 @@ class Game {
       const row = [];
       for (let j = 0; j < this.sizeField;  j += 1) {
         const cell = new Cell(i, j);
-        cell.htmlElement.classList.add(`${i}-${j}`);
+        cell.htmlElement.classList.add(`${i}-${j}`, `cell__${this.sizeField}`);
         row.push(cell);
         this.htmlElement.append(cell.htmlElement);
       }

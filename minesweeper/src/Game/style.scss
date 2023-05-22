@@ -23,3 +23,46 @@
   }
 
 }
+
+.game-field_game__15 {
+  grid-template-columns: repeat(15, 1fr);
+  width: 530px;
+
+  @media screen and (max-width: 884px) {
+    width: 430px;
+    gap: 3px
+  }
+
+  @media screen and (max-width: 470px) {
+    width: 370px;
+    gap: 2px;
+  }
+
+  @media screen and (max-width: 385px) {
+    width: 295px;
+    gap: 1px
+  }
+
+}
+
+.game-field_game__25 {
+  grid-template-columns: repeat(25, 1fr);
+  width: 665px;
+  margin-bottom: 15px;
+  gap: 1px;
+
+  @media screen and (max-width: 705px) {
+    width: 540px;
+  }
+
+  @media screen and (max-width: 580px) {
+    width: 460px;
+    padding: 2px;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    padding: 1px;
+  }
+
+}
