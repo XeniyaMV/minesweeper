@@ -86,6 +86,8 @@ inputMines.addEventListener('change', () => {
   if(+counter.textContent < 1) {
     if (+inputMines.value >= myGame.sizeField * myGame.sizeField) {
       inputMines.value = myGame.sizeField * myGame.sizeField - 1;
+    } else if (+inputMines.value < 10) {
+      inputMines.value = 10;
     }
     myGame.changeMinesNumber(+inputMines.value);
   }
