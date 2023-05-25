@@ -90,6 +90,8 @@ inputMines.addEventListener('change', () => {
       inputMines.value = 10;
     }
     myGame.changeMinesNumber(+inputMines.value);
+  } else {
+    inputMines.value = myGame.minesNumber;
   }
 });
 
