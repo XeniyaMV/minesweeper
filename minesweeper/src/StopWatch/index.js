@@ -3,7 +3,7 @@ let m;
 let s;
 let start;
 
-function startInterval () {
+function startInterval() {
   const sec = +s.innerHTML;
   if (sec + 1 >= 60) {
     const min = +m.innerHTML;

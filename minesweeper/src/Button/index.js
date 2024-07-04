@@ -1,6 +1,6 @@
 import './style.scss';
 
-function createButton ({ title, className, onClick }) {
+function createButton({ title, className, onClick }) {
   const button = document.createElement('button');
   button.classList.add('button', className);
   button.textContent = title;

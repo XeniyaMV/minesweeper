@@ -14,7 +14,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: "html-loader",
+        loader: 'html-loader',
         options: {
           minimize: {
             removeComments: false,
@@ -24,37 +24,37 @@ module.exports = {
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
-        type: 'asset/resource'
+        type: 'asset/resource',
       },
       {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates 'style' nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader",
+          'sass-loader',
           {
             loader: 'sass-resources-loader',
             options: {
               resources: [
                 'src/styles/vars.scss',
-              ]
-            }
-          }
-        ]
-      }
-    ]
+              ],
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
-      filename: 'index.html'
-    })
+      filename: 'index.html',
+    }),
   ],
   devServer: {
     compress: true,
     port: 3000,
-  }
-}
+  },
+};

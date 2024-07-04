@@ -45,14 +45,12 @@ export function createHeader() {
     burger.classList.toggle('burger-menu__active');
     listMenu.classList.toggle('list-menu__active');
     header.classList.toggle('header__active');
-    if(!header.classList.contains('header__active')) {
+    if (!header.classList.contains('header__active')) {
       header.classList.remove('header__level-open');
       listMenu.querySelector('.level-container').classList.remove('level-container__active');
       listMenu.querySelector('.icon').classList.remove('icon__active');
     }
   });
 
-
   return header;
 }
-

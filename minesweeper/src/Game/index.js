@@ -1,19 +1,19 @@
 import './style.scss';
-import { Cell } from "../Cell";
+import { Cell } from '../Cell';
 import { stopWatch } from '../StopWatch';
 import bomb from '../assets/icons/bomb-solid.svg';
 
 function getSample(n, k, ind) {
-  let arrN = [];
-  let res = [];
+  const arrN = [];
+  const res = [];
   for (let i = 0; i < n; i++) {
-      arrN.push(i);
+    arrN.push(i);
   }
   arrN.splice(ind, 1);
   for (let i = 0; i < k; i++) {
-      let index = Math.floor(Math.random()*arrN.length);
-      res.push(arrN[index]);
-      arrN.splice(index, 1);
+    const index = Math.floor(Math.random() * arrN.length);
+    res.push(arrN[index]);
+    arrN.splice(index, 1);
   }
   return res;
 }
@@ -48,7 +48,7 @@ function showWin() {
   p.innerHTML = `
     You found all mines in${showTime(h.textContent, 'hours')}${showTime(m.textContent, 'minutes')} 
     ${+s.textContent} seconds and ${+counter.textContent} moves!
-  `
+  `;
   youWin.firstElementChild.after(p);
   darkScreen.classList.add('dark-screen__active');
   li.classList.add('game-field_records-list-item');
@@ -105,27 +105,24 @@ class Game {
             button.textContent = 'Play';
             counter.innerHTML = '';
           }
-         } else {
-          if (button.textContent !== 'Play') {
-            if (!this.cells[numberCell[0]][numberCell[1]].isOpened()) {
-              this.countSteps += 1;
-              counter.innerHTML = this.countSteps;
-              if (this.cells[numberCell[0]][numberCell[1]].isMine()) {
-                this.showMines();
-              }
+        } else if (button.textContent !== 'Play') {
+          if (!this.cells[numberCell[0]][numberCell[1]].isOpened()) {
+            this.countSteps += 1;
+            counter.innerHTML = this.countSteps;
+            if (this.cells[numberCell[0]][numberCell[1]].isMine()) {
+              this.showMines();
             }
-            this.dfs(numberCell[0], numberCell[1]);
-            if (this.countOpens === this.sizeField * this.sizeField - this.minesNumber) {
-              showWin();
-              stopWatch('stop', s, m, h);
-              button.textContent = 'Play';
-              counter.innerHTML = '';
-            }
+          }
+          this.dfs(numberCell[0], numberCell[1]);
+          if (this.countOpens === this.sizeField * this.sizeField - this.minesNumber) {
+            showWin();
+            stopWatch('stop', s, m, h);
+            button.textContent = 'Play';
+            counter.innerHTML = '';
           }
         }
       }
-    })
-
+    });
   }
 
   changeMinesNumber(number) {
@@ -135,14 +132,14 @@ class Game {
   showMines() {
     const display = document.querySelector('.game-field_game-over');
     const darkScreen = document.querySelector('.dark-screen');
-    
+
     for (let i = 0; i < this.sizeField; i++) {
       for (let j = 0; j < this.sizeField; j++) {
         if (this.cells[i][j].isMine()) {
           const iconBomb = document.createElement('div');
           darkScreen.classList.add('dark-screen__active');
           display.classList.add('game-field_game-over__active');
-          iconBomb.classList.add('game-field_bomb')
+          iconBomb.classList.add('game-field_bomb');
           iconBomb.innerHTML = `
             <img class = "icon" src = "${bomb}" alt = "bomb">
           `;
@@ -154,19 +151,19 @@ class Game {
   }
 
   dfs(i, j) {
-    let queue = [[i, j]];
-    for (let k of [-1, 0, 1]) {
+    const queue = [[i, j]];
+    for (const k of [-1, 0, 1]) {
       if ((i + k < 0) || (i + k >= this.sizeField)) {
         continue;
       }
-      for (let l of [-1, 0, 1]) {
+      for (const l of [-1, 0, 1]) {
         if ((j + l < 0) || (j + l >= this.sizeField)) {
           continue;
         }
         if (k == 0 && l == 0) {
           continue;
         }
-        queue.push([i+k, j+l]);
+        queue.push([i + k, j + l]);
       }
     }
     while (queue.length) {
@@ -209,22 +206,22 @@ class Game {
     }
   }
 
-  setNumberMines () {  
+  setNumberMines() {
     for (let i = 0; i < this.sizeField; i++) {
       for (let j = 0; j < this.sizeField; j++) {
         let sum = 0;
-        for (let k of [-1, 0, 1]) {
+        for (const k of [-1, 0, 1]) {
           if ((i + k < 0) || (i + k >= this.sizeField)) {
             continue;
           }
-          for (let l of [-1, 0, 1]) {
+          for (const l of [-1, 0, 1]) {
             if ((j + l < 0) || (j + l >= this.sizeField)) {
               continue;
             }
             if (k == 0 && l == 0) {
               continue;
             }
-            sum += +this.cells[i+k][j+l].isMine();
+            sum += +this.cells[i + k][j + l].isMine();
           }
         }
         this.cells[i][j].minesNearby = sum;
@@ -237,7 +234,7 @@ class Game {
 
     for (let i = 0; i < this.sizeField; i += 1) {
       const row = [];
-      for (let j = 0; j < this.sizeField;  j += 1) {
+      for (let j = 0; j < this.sizeField; j += 1) {
         const cell = new Cell(i, j);
         cell.htmlElement.classList.add(`${i}-${j}`, `cell__${this.sizeField}`);
         row.push(cell);

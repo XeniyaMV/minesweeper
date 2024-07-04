@@ -3,7 +3,7 @@ import flag from '../assets/icons/flag.svg';
 import { stopWatch } from '../StopWatch';
 
 class Cell {
-  constructor (i, j) {
+  constructor(i, j) {
     // state = 0 - unopened, state = 1 -opened, state = 2 - flagged;
     this.state = 0;
     this.mine = false;
@@ -32,7 +32,7 @@ class Cell {
           }
         }
       }
-    })
+    });
 
     this.htmlElement.addEventListener('contextmenu', (event) => {
       if (!this.isOpened() && !this.isFlagged()) {
@@ -49,18 +49,18 @@ class Cell {
         this.htmlElement.innerHTML = '';
         this.state = 0;
       }
-    })
+    });
   }
 
-  isOpened () {
-    return (this.state == 1) ? true : false; 
+  isOpened() {
+    return (this.state == 1);
   }
 
-  isFlagged () {
-    return (this.state == 2) ? true : false;
+  isFlagged() {
+    return (this.state == 2);
   }
 
-  isMine () {
+  isMine() {
     return this.mine;
   }
 }

@@ -35,7 +35,6 @@ stopwatch.append(':');
 stopwatch.append(seconds);
 time.append(stopwatch);
 
-
 const button = createButton({ title: 'Play', className: 'progress-bar_button' });
 button.addEventListener('click', () => {
   if (button.textContent === 'Pause') {
@@ -45,7 +44,7 @@ button.addEventListener('click', () => {
     stopWatch('continue', seconds, minutes, hours);
     button.textContent = 'Pause';
   }
-})
+});
 
 const counterContainer = document.createElement('div');
 counterContainer.classList.add('counter-container');
@@ -62,6 +61,5 @@ counterContainer.append(counter);
 progressBar.append(time);
 progressBar.append(counterContainer);
 progressBar.append(button);
-
 
 export { progressBar };
