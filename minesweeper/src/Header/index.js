@@ -1,56 +1,84 @@
-import './style.scss';
-import arrow from '../assets/icons/angle-down.svg';
+import bomb from '../assets/icons/bomb-solid-red.svg';
+import settingsIconLightTheme from '../assets/icons/settings-light-theme.svg';
+import settingsIconDarkTheme from '../assets/icons/settings-dark-theme.svg';
+import closeIcon from '../assets/icons/close.svg';
+import createButton from '../Button';
+import createLevelSelector from './LevelSelector';
+import createThemeToggle from './ThemeToggle';
+import createSound from './Sound';
+import changeLevelTheme from './LevelSelector/changeLevelTheme';
+import changeSoundTheme from './Sound/changeSoundTheme';
 
-export function createHeader() {
+function createHeader(theme = 'light') {
   const header = document.createElement('header');
-  const listMenu = document.createElement('ul');
-  const burger = document.createElement('ul');
-  const innerHeader = `
-    <h1 class = "header-title">Minesweeper</h1>
-    <nav class = "header-menu">
-    </nav>
-  `;
+  const container = document.createElement('div');
+  const title = document.createElement('h1');
+  const settings = document.createElement('ul');
+  const settingsIconContainer = document.createElement('div');
+  const settingsIcon = document.createElement('img');
+  const nav = document.createElement('nav');
+  const button = createButton({ title: 'New Game', className: 'header__button' });
+  let currentTheme = theme;
 
-  listMenu.classList.add('list-menu');
-  burger.classList.add('burger-menu');
-  listMenu.innerHTML = `
-    <li class = "list-menu_item list-menu_item__level"> 
-      <span class= "list-menu_item-title"> Level  <img class = "icon" src = "${arrow}" alt="arrow down"></span>
-      <div class = "level-container">
-        <div class = "level">
-          <select class = "level_select">
-            <option value = "10"> Easy </option>
-            <option value = "15"> Medium </option>
-            <option value = "25"> Hard </option>
-          </select>
-        </div>
-        <div class = "number-mines">
-          <label class = "number-mines_label" for = "mines"> Mines </label>
-          <input class = "number-mines_input" id = "mines" type = "number" min = "10" max = "99" value="10">
-        </div>
-      </div>
-    </li>
-  `;
-  burger.innerHTML = `
-    <li class = "burger-menu_item"></li>
-    <li class = "burger-menu_item"></li>
-    <li class = "burger-menu_item"></li>
-  `;
-  header.classList.add('header');
-  header.classList.add('header__main-theme');
-  header.innerHTML = innerHeader;
-  header.lastElementChild.append(listMenu);
-  header.lastElementChild.append(burger);
-  burger.addEventListener('click', (event) => {
-    burger.classList.toggle('burger-menu__active');
-    listMenu.classList.toggle('list-menu__active');
-    header.classList.toggle('header__active');
-    if (!header.classList.contains('header__active')) {
-      header.classList.remove('header__level-open');
-      listMenu.querySelector('.level-container').classList.remove('level-container__active');
-      listMenu.querySelector('.icon').classList.remove('icon__active');
-    }
+  header.className = `header header_${currentTheme}-theme`;
+  container.className = 'container header__container';
+  title.className = 'header__title';
+  nav.className = 'header__menu';
+  settings.className = 'header__settings';
+  settingsIconContainer.className = 'header__settings-icon-container';
+  settingsIcon.className = 'header__settings-icon';
+
+  settingsIcon.alt = 'settings icon';
+  settingsIcon.src = currentTheme === 'light' ? settingsIconLightTheme : settingsIconDarkTheme;
+
+  title.innerHTML = `Minesweeper <img class="header__title-img" src=${bomb} alt="bomb icon" />`;
+  settings.append(createLevelSelector(currentTheme));
+  settings.append(createSound(currentTheme));
+  settings.append(createThemeToggle(currentTheme));
+  settingsIconContainer.append(settingsIcon);
+  nav.append(settingsIconContainer);
+  nav.append(settings);
+  nav.append(button);
+
+  container.append(title);
+  container.append(nav);
+
+  header.append(container);
+
+  settingsIconContainer.addEventListener('click', () => {
+    const overlay = document.createElement('div');
+    const closeButton = createButton({
+      className: 'popup__close',
+      onClick: () => {
+        settings.classList.remove('popup');
+        settings.classList.remove('header__popup');
+        settings.classList.remove('popup_dark');
+        closeButton.remove();
+        overlay.remove();
+        document.body.classList.remove('body_no-scroll');
+      },
+    });
+
+    overlay.className = 'overlay';
+    closeButton.innerHTML = `<img src=${closeIcon} alt="close icon">`;
+
+    settings.prepend(closeButton);
+    settings.classList.add('popup');
+    settings.classList.add('header__popup');
+    if (currentTheme === 'dark') settings.classList.add('popup_dark');
+
+    document.body.classList.add('body_no-scroll');
+    header.append(overlay);
+  });
+
+  header.addEventListener('changeTheme', (e) => {
+    currentTheme = e.detail.theme();
+    changeLevelTheme(currentTheme);
+    changeSoundTheme(currentTheme);
+    settingsIcon.src = currentTheme === 'light' ? settingsIconLightTheme : settingsIconDarkTheme;
+    if (settings.classList.contains('popup')) settings.classList.toggle('popup_dark');
   });
 
   return header;
 }
+export default createHeader;

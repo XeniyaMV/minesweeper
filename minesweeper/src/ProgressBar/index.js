@@ -1,4 +1,4 @@
-import './style.scss';
+// import './style.scss';
 import clock from '../assets/icons/stopwatch.png';
 import boot from '../assets/icons/boot.png';
 

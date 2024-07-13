@@ -1,10 +1,11 @@
-import './style.scss';
+// import './style.scss';
 
 import { progressBar } from '../ProgressBar';
 import { Game } from '../Game';
 import { createButton } from '../Button';
 import { stopWatch } from '../StopWatch';
-import { createHeader } from '../Header';
+// import { createHeader } from '../Header';
+import createHeader from '../Header';
 
 const body = document.querySelector('body');
 body.addEventListener('contextmenu', (event) => {

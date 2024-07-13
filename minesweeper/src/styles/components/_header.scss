@@ -1,0 +1,97 @@
+.header {
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 1.5rem 0 3rem;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+
+    font-size: 4rem;
+    font-weight: 400;
+
+    @include media-l {
+      font-size: 3.6rem;
+    }
+  
+    @include media-m {
+      font-size: 3rem;
+    }
+  
+    @include media-s {
+      font-size: 2.4rem;
+    }
+  }
+
+  &__title-img {
+    width: 4.5rem;
+
+    @include media-l {
+      width: 4rem;
+    }
+  
+    @include media-m {
+      width: 3.5rem;
+    }
+  
+    @include media-s {
+      width: 3rem;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+    @include media-m {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__settings-icon-container {
+    display: none;
+    align-items: center;
+
+    width: 3.5rem;
+
+    cursor: pointer;
+    @include media-m {
+      display: flex;
+    }
+
+    @include media-s {
+      width: 3rem;
+    }
+  }
+
+  &__settings-icon {
+    width: 100%;
+  }
+
+  &__settings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 2rem;
+
+    @include media-m {
+      display: none;
+    }
+  }
+
+  &__button {
+    background-color: $new-game-button-background;
+    color:  $new-game-button-font-color;
+  }
+
+  &__popup {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+}

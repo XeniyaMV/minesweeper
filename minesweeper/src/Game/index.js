@@ -1,4 +1,4 @@
-import './style.scss';
+// import './style.scss';
 import { Cell } from '../Cell';
 import { stopWatch } from '../StopWatch';
 import bomb from '../assets/icons/bomb-solid.svg';

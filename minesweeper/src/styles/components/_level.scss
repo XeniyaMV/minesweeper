@@ -1,0 +1,97 @@
+.level {
+  position: relative;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    @include font-size;
+
+  }
+
+  &__expand {
+    padding: 0rem;
+    padding-left: 0.5rem;
+    background-color: transparent;
+    &_hide {
+      padding-right: 0.5rem;
+      padding-left: 0rem;
+
+      transform: rotate(180deg);
+    }
+  }
+
+  &__options {
+    position: absolute;
+    top: 3.7rem;
+    left: 50%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+
+    padding: 0.5rem;
+    @include border($text-light-theme);
+
+    background-color: $background-light-theme;
+
+    transform: translateX(-50%);
+
+    @include transition;
+
+    &_hidden {
+      display: none;
+    }
+
+    &_dark {
+      border-color: $text-dark-theme;
+      background-color: $background-dark-theme;
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    label {
+      @include font-size;
+    }
+  }
+
+  &__select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.5rem;
+
+    @include border(transparent);
+    @include font-size;
+    color: $text-light-theme;
+
+    cursor: pointer;
+  }
+
+  &__input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.5rem;
+
+    @include border(transparent);
+    @include font-size;
+    color: $text-light-theme;
+  }
+
+  &__submit {
+    margin-top: 1rem;
+    background-color: $text-light-theme;
+    color: $text-dark-theme;
+
+    &_dark {
+      background-color: $text-dark-theme;
+      color: $text-light-theme;
+    }
+  }
+}

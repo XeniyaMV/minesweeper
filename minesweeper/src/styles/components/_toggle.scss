@@ -1,0 +1,57 @@
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 4rem;
+  height: 2.2rem;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+  }
+
+  &__thumb {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0rem 0.3rem;
+
+    width: 100%;
+    height: 100%;
+
+    @include border($toggle-theme-stroke);
+    border-radius: 1.5rem;
+
+    background-color: $toggle-theme-background;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+
+      width: 1.6rem;
+      height: 1.6rem;
+
+      @include border($toggle-theme-stroke);
+      border-radius: 50%;
+
+      background-color: $toggle-theme-thumb;
+      @include transition;
+
+    }
+  }
+
+  &__thumb:checked + &__slider::before{
+    transform: translateX(85%);
+  }
+
+}

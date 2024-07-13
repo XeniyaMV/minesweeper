@@ -1,4 +1,4 @@
-import './style.scss';
+// import './style.scss';
 import flag from '../assets/icons/flag.svg';
 import { stopWatch } from '../StopWatch';
 
