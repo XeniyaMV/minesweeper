@@ -1,13 +1,19 @@
 import './styles/style.scss';
 // import { gameField } from './GameField';
 import createHeader from './Header';
+import Stopwatch from './Stopwatch';
+import createButton from './Button';
 
 const body = document.querySelector('body');
+const header = createHeader();
+const stopwatch = new Stopwatch(0, 0, 0);
+
 body.addEventListener('contextmenu', (e) => {
   e.preventDefault();
 });
 
 body.addEventListener('changeTheme', (e) => {
+  stopwatch.toggleDarkMode();
   if (e.detail.theme() === 'dark') {
     body.classList.add('body_dark');
   } else {
@@ -20,5 +26,6 @@ body.addEventListener('changeLevel', (e) => {
 });
 
 // body.append(gameField);
-const header = createHeader();
+
 body.append(header);
+body.append(stopwatch.htmlElement);
