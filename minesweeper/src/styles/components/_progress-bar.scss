@@ -1,20 +1,19 @@
-.stopwatch {
+.progress-bar {
   display: flex;
   align-items: center;
-  column-gap: 1.5rem;
+  justify-content: space-between;
 
-  &__icon {
-    width: 2.5rem;
-    height: auto;
-  }
+  max-width: 40rem;
 
-  &__container {
+  &__unit-container {
     display: flex;
     align-items: center;
-    column-gap: 0.5rem;
+    column-gap: 1.5rem;
+  }
 
-    @include font-size;
-    @include transition;
+  &__unit-icon {
+    width: 2.5rem;
+    height: auto;
   }
 
   &__unit {

@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     'eslint-config-airbnb-base',
   ],
+  // parser: 'babel-eslint',
   env: {
     browser: true,
   },

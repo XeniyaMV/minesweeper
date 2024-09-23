@@ -1,6 +1,8 @@
 // import './style.scss';
-import { Cell } from '../Cell';
-import { stopWatch } from '../StopWatch';
+import Cell from '../Cell';
+// import { stopWatch } from '../StopWatch';
+// import Stopwatch from '../Stopwatch';
+import Progressbar from '../ProgressBar';
 import bomb from '../assets/icons/bomb-solid.svg';
 
 function getSample(n, k, ind) {
@@ -66,63 +68,64 @@ class Game {
     this.sizeField = sizeField;
     this.minesNumber = minesNumber;
     this.cells = [];
-    this.htmlElement = document.createElement('div');
-    this.countSteps = 0;
-    this.countOpens = 0;
-    this.clicked = false;
-    this.createGame();
+    // this.htmlElement = document.createElement('div');
+    // this.countSteps = 0;
+    // this.countOpens = 0;
+    // this.clicked = false;
+    // this.createGame();
+    this.progressbar = new Progressbar();
 
-    this.htmlElement.addEventListener('click', (event) => {
-      let numberCell = event.target.className.search(/[0-9]-[0-9]|[0-9][0-9]-[0-9]/);
-      const h = document.querySelector('.time_hours');
-      const m = document.querySelector('.time_minutes');
-      const s = document.querySelector('.time_seconds');
-      const button = document.querySelector('.progress-bar_button');
-      const counter = document.querySelector('.counter-container_counter');
-      let numberCellString = '';
-      for (let i = numberCell; i < event.target.className.length; i++) {
-        if (event.target.className[i] === '-' || +event.target.className[i] || event.target.className[i] === '0') {
-          numberCellString += event.target.className[i];
-        } else {
-          break;
-        }
-      }
-      numberCell = numberCellString.split('-').map((item) => +item);
-      if (event.target.classList.contains('game-field_cell')) {
-        if (!this.clicked) {
-          this.initGame(numberCell[0], numberCell[1]);
-          this.clicked = true;
-          if (button.textContent === 'Play') {
-            stopWatch('start', s, m, h);
-            button.textContent = 'Pause';
-          }
-          this.countSteps += 1;
-          counter.innerHTML = this.countSteps;
-          this.dfs(numberCell[0], numberCell[1]);
-          if (this.countOpens === this.sizeField * this.sizeField - this.minesNumber) {
-            showWin();
-            stopWatch('stop', s, m, h);
-            button.textContent = 'Play';
-            counter.innerHTML = '';
-          }
-        } else if (button.textContent !== 'Play') {
-          if (!this.cells[numberCell[0]][numberCell[1]].isOpened()) {
-            this.countSteps += 1;
-            counter.innerHTML = this.countSteps;
-            if (this.cells[numberCell[0]][numberCell[1]].isMine()) {
-              this.showMines();
-            }
-          }
-          this.dfs(numberCell[0], numberCell[1]);
-          if (this.countOpens === this.sizeField * this.sizeField - this.minesNumber) {
-            showWin();
-            stopWatch('stop', s, m, h);
-            button.textContent = 'Play';
-            counter.innerHTML = '';
-          }
-        }
-      }
-    });
+    // this.htmlElement.addEventListener('click', (event) => {
+    //   let numberCell = event.target.className.search(/[0-9]-[0-9]|[0-9][0-9]-[0-9]/);
+    //   const h = document.querySelector('.time_hours');
+    //   const m = document.querySelector('.time_minutes');
+    //   const s = document.querySelector('.time_seconds');
+    //   const button = document.querySelector('.progress-bar_button');
+    //   const counter = document.querySelector('.counter-container_counter');
+    //   let numberCellString = '';
+    //   for (let i = numberCell; i < event.target.className.length; i++) {
+    //     if (event.target.className[i] === '-' || +event.target.className[i] || event.target.className[i] === '0') {
+    //       numberCellString += event.target.className[i];
+    //     } else {
+    //       break;
+    //     }
+    //   }
+    //   numberCell = numberCellString.split('-').map((item) => +item);
+    //   if (event.target.classList.contains('game-field_cell')) {
+    //     if (!this.clicked) {
+    //       this.initGame(numberCell[0], numberCell[1]);
+    //       this.clicked = true;
+    //       if (button.textContent === 'Play') {
+    //         stopWatch('start', s, m, h);
+    //         button.textContent = 'Pause';
+    //       }
+    //       this.countSteps += 1;
+    //       counter.innerHTML = this.countSteps;
+    //       this.dfs(numberCell[0], numberCell[1]);
+    //       if (this.countOpens === this.sizeField * this.sizeField - this.minesNumber) {
+    //         showWin();
+    //         stopWatch('stop', s, m, h);
+    //         button.textContent = 'Play';
+    //         counter.innerHTML = '';
+    //       }
+    //     } else if (button.textContent !== 'Play') {
+    //       if (!this.cells[numberCell[0]][numberCell[1]].isOpened()) {
+    //         this.countSteps += 1;
+    //         counter.innerHTML = this.countSteps;
+    //         if (this.cells[numberCell[0]][numberCell[1]].isMine()) {
+    //           this.showMines();
+    //         }
+    //       }
+    //       this.dfs(numberCell[0], numberCell[1]);
+    //       if (this.countOpens === this.sizeField * this.sizeField - this.minesNumber) {
+    //         showWin();
+    //         stopWatch('stop', s, m, h);
+    //         button.textContent = 'Play';
+    //         counter.innerHTML = '';
+    //       }
+    //     }
+    //   }
+    // });
   }
 
   changeMinesNumber(number) {

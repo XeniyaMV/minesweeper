@@ -59,9 +59,9 @@ class Stopwatch {
     this.hours = hours;
     this.minutes = minutes;
     this.seconds = seconds;
-    this.hoursHtml = this.getTimeUnit(hours);
-    this.minutesHtml = this.getTimeUnit(minutes);
-    this.secondsHtml = this.getTimeUnit(seconds);
+    this.hoursHtml = this.initTimeUnit(hours);
+    this.minutesHtml = this.initTimeUnit(minutes);
+    this.secondsHtml = this.initTimeUnit(seconds);
     this.htmlElement = null;
     this.timeInterval = null;
     this.runTime = this.runTime.bind(this);
@@ -73,7 +73,7 @@ class Stopwatch {
     return time < 10 ? `0${time}` : time.toString();
   }
 
-  getTimeUnit(unitValue) {
+  initTimeUnit(unitValue) {
     const unitContainer = document.createElement('div');
 
     unitContainer.className = 'stopwatch__unit';
@@ -83,7 +83,7 @@ class Stopwatch {
   }
 
   buildHtmlElement() {
-    const stopwatch = document.createElement('div');
+    const stopwatch = document.createElement('section');
     const stopwatchContainer = document.createElement('div');
 
     stopwatch.className = 'stopwatch';

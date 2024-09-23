@@ -1,36 +1,35 @@
 // import './style.scss';
 import flag from '../assets/icons/flag.svg';
-import { stopWatch } from '../StopWatch';
 
 class Cell {
   constructor(i, j) {
     // state = 0 - unopened, state = 1 -opened, state = 2 - flagged;
-    this.state = 0;
-    this.mine = false;
+    // this.state = 0;
+    // this.mine = false;
+    this.isMined = false;
+    this.isFlagged = false;
+    this.isOpened = false;
+    this.isActive = false;
     this.minesNearby = 0;
     this.i = i;
     this.j = j;
     this.htmlElement = null;
-
     this.buildHtml();
-  }
 
-  buildHtml() {
-    const cell = document.createElement('div');
-    cell.classList.add('game-field_cell');
-    this.htmlElement = cell;
-
-    this.htmlElement.addEventListener('click', (event) => {
-      const button = document.querySelector('.progress-bar_button');
-      if (this.isMine()) {
-        if (!this.isFlagged()) {
-          if (button.textContent !== 'Play') {
-            const h = document.querySelector('.time_hours');
-            const m = document.querySelector('.time_minutes');
-            const s = document.querySelector('.time_seconds');
-            stopWatch('stop', s, m, h);
-          }
-        }
+    this.htmlElement.addEventListener('click', () => {
+      // const button = document.querySelector('.progress-bar_button');
+      // if (this.isMine()) {
+      //   if (!this.isFlagged()) {
+      //     if (button.textContent !== 'Play') {
+      //       const h = document.querySelector('.time_hours');
+      //       const m = document.querySelector('.time_minutes');
+      //       const s = document.querySelector('.time_seconds');
+      //       stopWatch('stop', s, m, h);
+      //     }
+      //   }
+      // }
+      if (this.isActive && !this.isFlagged) {
+        this.setIsOpened(true);
       }
     });
 
@@ -52,17 +51,40 @@ class Cell {
     });
   }
 
-  isOpened() {
-    return (this.state == 1);
+  buildHtml() {
+    const cell = document.createElement('div');
+    // cell.classList.add('game-field_cell');
+    cell.className = 'game__cell';
+    this.htmlElement = cell;
   }
 
-  isFlagged() {
-    return (this.state == 2);
+  setIsMined(value) {
+    this.isMined = value;
+    if (value) {
+      const bombIcon = document.createElement('img');
+      this.htmlElement.append(bombIcon);
+    }
   }
 
-  isMine() {
-    return this.mine;
+  setIsFlagged(value) {
+    this.isFlagged = value;
   }
+
+  setIsOpened(value) {
+    this.isOpened = value;
+  }
+
+  // isOpened() {
+  //   return (this.state == 1);
+  // }
+
+  // isFlagged() {
+  //   return (this.state == 2);
+  // }
+
+  // isMine() {
+  //   return this.mine;
+  // }
 }
 
-export { Cell };
+export default Cell;
